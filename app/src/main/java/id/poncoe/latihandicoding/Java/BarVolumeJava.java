@@ -2,6 +2,7 @@ package id.poncoe.latihandicoding.Java;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,10 @@ public class BarVolumeJava extends AppCompatActivity implements View.OnClickList
         /** Maksud baris di atas adalah kelas BarVolume akan menampilkan tampilan yang berasal dari layout volumebar.xml. */
 
         setContentView(R.layout.volumebar);
+        setTitle("Bar Volume");
+
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /** Maksud dari baris diatas adalah obyek edittext edtWidth disesuaikan (cast)
          * dengan komponen edittext ber-ID edt_width di layout xml melalui metode findViewById(). */
@@ -127,5 +132,14 @@ public class BarVolumeJava extends AppCompatActivity implements View.OnClickList
         } catch (NumberFormatException e) {
             return null;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home)
+            finish();
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import id.poncoe.latihandicoding.R
+import android.view.MenuItem
+
 
 /** Menandakan bahwa kelas Java / Kotlin di atas merupakan sebuah activity
  * karena inherit ke superclass bernama AppCompatActivity. */
@@ -39,6 +41,10 @@ class BarVolumeKt : AppCompatActivity(), View.OnClickListener {
         /** Maksud baris di atas adalah kelas BarVolume akan menampilkan tampilan yang berasal dari layout volumebar.xml. */
 
         setContentView(R.layout.volumebar)
+        setTitle("Bar Volume")
+
+        if (supportActionBar != null)
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         /** Maksud dari baris diatas adalah obyek edittext edtWidth disesuaikan (cast)
          * dengan komponen edittext ber-ID edt_width di layout xml melalui metode findViewById(). */
@@ -128,4 +134,12 @@ class BarVolumeKt : AppCompatActivity(), View.OnClickListener {
             null
         }
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.getItemId() === android.R.id.home)
+            finish()
+
+        return super.onOptionsItemSelected(item)
+    }
+
 }
