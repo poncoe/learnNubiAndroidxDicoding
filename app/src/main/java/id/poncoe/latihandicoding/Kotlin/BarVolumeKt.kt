@@ -11,7 +11,13 @@ import id.poncoe.latihandicoding.R
 
 /** Menandakan bahwa kelas Java / Kotlin di atas merupakan sebuah activity
  * karena inherit ke superclass bernama AppCompatActivity. */
+
+/** onClickListener Ini adalah listener yang kita implementasikan untuk memantau kejadian klik pada komponen tombol (button). */
+
 class BarVolumeKt : AppCompatActivity(), View.OnClickListener {
+
+    /** Kode di atas mendeklarasikan semua komponen view yang akan dimanipulasi.
+     * Kita deklarasikan secara global agar bisa dikenal di keseluruhan bagian kelas. */
 
     private lateinit var edtWidth: EditText
     private lateinit var edtHeight: EditText
@@ -23,9 +29,19 @@ class BarVolumeKt : AppCompatActivity(), View.OnClickListener {
         private const val STATE_RESULT = "state_result"
     }
 
+    /** Metode onCreate() merupakan metode utama pada activity. Di sinilah kita dapat mengatur layout xml.
+     * Semua proses inisialisasi komponen yang digunakan akan dijalankan di sini.
+     * Pada metode ini kita casting semua komponen view yang kita telah deklarasikan sebelumnya, agar dapat kita manipulasi. */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /** Maksud baris di atas adalah kelas BarVolume akan menampilkan tampilan yang berasal dari layout volumebar.xml. */
+
         setContentView(R.layout.volumebar)
+
+        /** Maksud dari baris diatas adalah obyek edittext edtWidth disesuaikan (cast)
+         * dengan komponen edittext ber-ID edt_width di layout xml melalui metode findViewById(). */
 
         edtWidth = findViewById(R.id.edt_width)
         edtHeight = findViewById(R.id.edt_height)
@@ -33,13 +49,22 @@ class BarVolumeKt : AppCompatActivity(), View.OnClickListener {
         btnCalculate = findViewById(R.id.btn_calculate)
         tvResult = findViewById(R.id.tv_result)
 
+        /** Kita memasang event click listener untuk obyek btnCalculate sehingga sebuah aksi dapat dijalankan ketika obyek tersebut diklik.
+         * Keyword this merujuk pada obyek Activity saat ini yang telah mengimplementasikan listener OnClickListener sebelumnya.  */
+
         btnCalculate.setOnClickListener(this)
+
+        /** Perhatikan metode onSaveInstanceState. Di dalam metode tersebut, hasil perhitungan yang ditampilkan pada tvResult dimasukkan pada bundle kemudian disimpan isinya.
+         * Setelah onSaveInstanceState berhasil dijalankan, maka activity akan melakukan proses onDestroy dan menjalankan kembali onCreate secara otomatis. */
 
         if (savedInstanceState != null) {
             val result = savedInstanceState.getString(STATE_RESULT) as String
             tvResult.text = result
         }
     }
+
+    /** Pada onCreate inilah kita menggunakan nilai bundle yang telah kita simpan sebelumnya pada onSaveInstanceState.
+     * Nilai tersebut kita isikan kembali pada tvResult. */
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
