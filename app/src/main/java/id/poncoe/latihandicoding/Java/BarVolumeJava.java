@@ -11,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import id.poncoe.latihandicoding.R;
 
+/** Menandakan bahwa kelas Java / Kotlin di atas merupakan sebuah activity
+ * karena inherit ke superclass bernama AppCompatActivity. */
 public class BarVolumeJava extends AppCompatActivity implements View.OnClickListener {
+    
     private EditText edtWidth, edtHeight, edtLength;
     private Button btnCalculate;
     private TextView tvResult;

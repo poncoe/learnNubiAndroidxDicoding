@@ -9,7 +9,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import id.poncoe.latihandicoding.R
 
+/** Menandakan bahwa kelas Java / Kotlin di atas merupakan sebuah activity
+ * karena inherit ke superclass bernama AppCompatActivity. */
 class BarVolumeKt : AppCompatActivity(), View.OnClickListener {
+
     private lateinit var edtWidth: EditText
     private lateinit var edtHeight: EditText
     private lateinit var edtLength: EditText
