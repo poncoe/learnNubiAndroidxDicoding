@@ -50,4 +50,20 @@
     <string name="dummy_value">$735</string>
     <string name="dummy_photos">6 photos</string>
 
+    <!-- Recycler View -->
+    <string name="nama_kucing">Nama Kucing</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="list">List</string>
+    <string name="grid">Grid</string>
+    <string name="cardview">CardView</string>
+    <string name="description">deskripsi</string>
+    <string name="favorite">Favorite</string>
+    <string name="share">Share</string>
+    <string name="dibuat_dengan_java">Dibuat dengan Java</string>
+    <string name="dibuat_dengan_kotlin">Dibuat dengan Kotlin</string>
+    <string name="bar_volume">Bar Volume</string>
+    <string name="intent">Intent</string>
+    <string name="view_group">View Group</string>
+    <string name="recyclerview">RecyclerView</string>
+
 </resources>
