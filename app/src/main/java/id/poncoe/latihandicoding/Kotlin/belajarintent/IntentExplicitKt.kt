@@ -11,7 +11,7 @@ class IntentExplicitKt : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pindah_dengan_data)
-        setTitle("Intent dengan Data")
+        title = "Intent dengan Data"
 
         if (supportActionBar != null)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -41,7 +41,7 @@ class IntentExplicitKt : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if (item.getItemId() === android.R.id.home)
+        if (item.itemId === android.R.id.home)
             finish()
 
         return super.onOptionsItemSelected(item)

@@ -89,7 +89,7 @@ class MainRecyclerView : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         setMode(item.itemId)
-        if (item.getItemId() === android.R.id.home)
+        if (item.itemId === android.R.id.home)
             finish()
         return super.onOptionsItemSelected(item)
     }
@@ -98,17 +98,17 @@ class MainRecyclerView : AppCompatActivity() {
         when (selectedMode) {
             R.id.action_list -> {
                 showRecyclerList()
-                title = "Mode List";
+                title = "Mode List"
             }
 
             R.id.action_grid -> {
                 showRecyclerGrid()
-                title = "Mode Grid";
+                title = "Mode Grid"
             }
 
             R.id.action_cardview -> {
                 showRecyclerCardView()
-                title = "Mode CardView";
+                title = "Mode CardView"
             }
         }
     }

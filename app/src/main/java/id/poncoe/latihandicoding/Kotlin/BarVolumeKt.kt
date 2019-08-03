@@ -41,7 +41,7 @@ class BarVolumeKt : AppCompatActivity(), View.OnClickListener {
         /** Maksud baris di atas adalah kelas BarVolume akan menampilkan tampilan yang berasal dari layout volumebar.xml. */
 
         setContentView(R.layout.volumebar)
-        setTitle("Bar Volume")
+        title = "Bar Volume"
 
         if (supportActionBar != null)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -136,7 +136,7 @@ class BarVolumeKt : AppCompatActivity(), View.OnClickListener {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if (item.getItemId() === android.R.id.home)
+        if (item.itemId === android.R.id.home)
             finish()
 
         return super.onOptionsItemSelected(item)

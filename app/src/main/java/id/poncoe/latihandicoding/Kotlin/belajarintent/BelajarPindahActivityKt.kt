@@ -14,7 +14,7 @@ class BelajarPindahActivityKt : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.belajarintent_pindahactivity)
-        setTitle("Latihan Intent")
+        title = "Latihan Intent"
 
         if (supportActionBar != null)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -81,7 +81,7 @@ class BelajarPindahActivityKt : AppCompatActivity(), View.OnClickListener {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if (item.getItemId() === android.R.id.home)
+        if (item.itemId === android.R.id.home)
             finish()
 
         return super.onOptionsItemSelected(item)
