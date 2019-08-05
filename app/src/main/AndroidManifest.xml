@@ -72,6 +72,9 @@
         <activity
             android:name=".Java.recyclerview.DetailM"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Kotlin.recyclerview.DetailM"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>
