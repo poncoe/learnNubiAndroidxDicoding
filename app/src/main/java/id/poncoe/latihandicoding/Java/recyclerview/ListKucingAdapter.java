@@ -1,5 +1,8 @@
 package id.poncoe.latihandicoding.Java.recyclerview;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +21,11 @@ import id.poncoe.latihandicoding.R;
 
 public class ListKucingAdapter extends RecyclerView.Adapter<ListKucingAdapter.ListViewHolder> {
     private ArrayList<Kucing> listKucing;
+    Context c;
 
-    public ListKucingAdapter(ArrayList<Kucing> list) {
+    public ListKucingAdapter(ArrayList<Kucing> list, Context c) {
         this.listKucing = list;
+        this.c = c;
     }
 
     private OnItemClickCallback onItemClickCallback;
@@ -46,13 +51,20 @@ public class ListKucingAdapter extends RecyclerView.Adapter<ListKucingAdapter.Li
                 .apply(new RequestOptions().override(55, 55).centerCropTransform())
                 .into(holder.imgPhoto);
 
-        holder.tvName.setText(kucing.getName());
-        holder.tvFrom.setText(kucing.getFrom());
+        final String images = kucing.getPhoto();
+        final String title = kucing.getName();
+        final String isi = kucing.getFrom();
+
+        //BIND
+        holder.imgPhoto.setImageURI(Uri.parse(images));
+        holder.tvName.setText(title);
+        holder.tvFrom.setText(isi);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickCallback.onItemClicked(listKucing.get(holder.getAdapterPosition()));
+                openDetailActivity(images,title,isi);
+                //onItemClickCallback.onItemClicked(listKucing.get(holder.getAdapterPosition()));
             }
         });
 
@@ -76,5 +88,15 @@ public class ListKucingAdapter extends RecyclerView.Adapter<ListKucingAdapter.Li
             tvName = itemView.findViewById(R.id.tv_item_name);
             tvFrom = itemView.findViewById(R.id.tv_item_from);
         }
+    }
+
+    ////open activity
+    private void openDetailActivity(String... details) {
+        Intent i = new Intent(c, DetailM.class);
+        i.putExtra("IMAGES_KEY", details[0]);
+        i.putExtra("TITLE_KEY", details[1]);
+        i.putExtra("ISI_KEY", details[2]);
+        c.startActivity(i);
+
     }
 }

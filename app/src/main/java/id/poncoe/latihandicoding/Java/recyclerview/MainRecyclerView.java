@@ -53,7 +53,7 @@ public class MainRecyclerView extends AppCompatActivity {
 
     private void showRecyclerList(){
         rvHeroes.setLayoutManager(new LinearLayoutManager(this));
-        ListKucingAdapter listKucingAdapter = new ListKucingAdapter(list);
+        ListKucingAdapter listKucingAdapter = new ListKucingAdapter(list,this);
         rvHeroes.setAdapter(listKucingAdapter);
 
         listKucingAdapter.setOnItemClickCallback(new ListKucingAdapter.OnItemClickCallback() {
@@ -81,7 +81,7 @@ public class MainRecyclerView extends AppCompatActivity {
 
     private void showRecyclerCardView(){
         rvHeroes.setLayoutManager(new LinearLayoutManager(this));
-        CardviewKucingAdapter cardviewKucingadapter = new CardviewKucingAdapter(list);
+        CardviewKucingAdapter cardviewKucingadapter = new CardviewKucingAdapter(list,this);
         rvHeroes.setAdapter(cardviewKucingadapter);
     }
 

@@ -1,5 +1,8 @@
 package id.poncoe.latihandicoding.Java.recyclerview;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +19,11 @@ import id.poncoe.latihandicoding.R;
 
 public class CardviewKucingAdapter extends RecyclerView.Adapter<CardviewKucingAdapter.CardViewViewHolder> {
     private ArrayList<Kucing> listKucing;
+    Context c;
 
-    public CardviewKucingAdapter(ArrayList<Kucing> list) {
+    public CardviewKucingAdapter(ArrayList<Kucing> list, Context c) {
         this.listKucing = list;
+        this.c = c;
     }
 
     @NonNull
@@ -31,7 +36,7 @@ public class CardviewKucingAdapter extends RecyclerView.Adapter<CardviewKucingAd
     @Override
     public void onBindViewHolder(@NonNull final CardViewViewHolder holder, int position) {
 
-        Kucing kucing = listKucing.get(position);
+        final Kucing kucing = listKucing.get(position);
 
         /** Glide digunakan untuk memuat sebuah gambar, baik yang sudah Anda siapkan di drawable maupun berada di server */
         Glide.with(holder.itemView.getContext())
@@ -39,8 +44,14 @@ public class CardviewKucingAdapter extends RecyclerView.Adapter<CardviewKucingAd
                 .apply(new RequestOptions().override(350, 550).centerCropTransform())
                 .into(holder.imgPhoto);
 
-        holder.tvName.setText(kucing.getName());
-        holder.tvFrom.setText(kucing.getFrom());
+        final String images = kucing.getPhoto();
+        final String title = kucing.getName();
+        final String isi = kucing.getFrom();
+
+        //BIND
+        holder.imgPhoto.setImageURI(Uri.parse(images));
+        holder.tvName.setText(title);
+        holder.tvFrom.setText(isi);
 
         holder.btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +71,7 @@ public class CardviewKucingAdapter extends RecyclerView.Adapter<CardviewKucingAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openDetailActivity(images,title,isi);
                 Toast.makeText(holder.itemView.getContext(), "Kamu memilih " + listKucing.get(holder.getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -82,5 +94,15 @@ public class CardviewKucingAdapter extends RecyclerView.Adapter<CardviewKucingAd
             btnFavorite = itemView.findViewById(R.id.btn_set_favorite);
             btnShare = itemView.findViewById(R.id.btn_set_share);
         }
+    }
+
+    ////open activity
+    private void openDetailActivity(String... details) {
+        Intent i = new Intent(c, DetailM.class);
+        i.putExtra("IMAGES_KEY", details[0]);
+        i.putExtra("TITLE_KEY", details[1]);
+        i.putExtra("ISI_KEY", details[2]);
+        c.startActivity(i);
+
     }
 }
