@@ -1,5 +1,7 @@
 package id.poncoe.latihandicoding.Kotlin.recyclerview
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.poncoe.latihandicoding.R
 
-class CardviewKucingAdapter(private val listKucing: ArrayList<Kucing>) : RecyclerView.Adapter<CardviewKucingAdapter.CardViewViewHolder>() {
+class CardviewKucingAdapter(private val listKucing: ArrayList<Kucing>, private val context: Context) : RecyclerView.Adapter<CardviewKucingAdapter.CardViewViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_cardview_recyclerview, parent, false)
@@ -32,7 +34,10 @@ class CardviewKucingAdapter(private val listKucing: ArrayList<Kucing>) : Recycle
         holder.tvFrom.text = from
         holder.btnFavorite.setOnClickListener { Toast.makeText(holder.itemView.context, "Favorit " + listKucing[holder.adapterPosition].name, Toast.LENGTH_SHORT).show() }
         holder.btnShare.setOnClickListener { Toast.makeText(holder.itemView.context, "Bagikan " + listKucing[holder.adapterPosition].name, Toast.LENGTH_SHORT).show() }
-        holder.itemView.setOnClickListener { Toast.makeText(holder.itemView.context, "Kamu memilih " + listKucing[holder.adapterPosition].name, Toast.LENGTH_SHORT).show() }
+        holder.itemView.setOnClickListener {
+            openDetailActivity(photo,name,from)
+            Toast.makeText(holder.itemView.context, "Kamu memilih " + listKucing[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -45,5 +50,15 @@ class CardviewKucingAdapter(private val listKucing: ArrayList<Kucing>) : Recycle
         var tvFrom: TextView = itemView.findViewById(R.id.tv_item_from)
         var btnFavorite: Button = itemView.findViewById(R.id.btn_set_favorite)
         var btnShare: Button = itemView.findViewById(R.id.btn_set_share)
+    }
+
+    private fun openDetailActivity(vararg details: String) {
+        val i = Intent(context, DetailM::class.java)
+        i.putExtra("IMAGES_KEY", details[0])
+        i.putExtra("TITLE_KEY", details[1])
+        i.putExtra("ISI_KEY", details[2])
+
+        context.startActivity(i)
+
     }
 }

@@ -1,16 +1,19 @@
 package id.poncoe.latihandicoding.Kotlin.recyclerview
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.poncoe.latihandicoding.R
 
-class ListKucingAdapter(val listKucing: ArrayList<Kucing>) : RecyclerView.Adapter<ListKucingAdapter.ListViewHolder>() {
+class ListKucingAdapter(val listKucing: ArrayList<Kucing>, private val context: Context) : RecyclerView.Adapter<ListKucingAdapter.ListViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallbackKt
 
@@ -35,7 +38,10 @@ class ListKucingAdapter(val listKucing: ArrayList<Kucing>) : RecyclerView.Adapte
 
         holder.tvName.text = name
         holder.tvFrom.text = from
-        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listKucing[holder.adapterPosition]) }
+        holder.itemView.setOnClickListener {
+            openDetailActivity(photo,name,from)
+            Toast.makeText(holder.itemView.context, "Kamu memilih " + listKucing[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
+        }
     }
 
     interface OnItemClickCallbackKt {
@@ -50,5 +56,15 @@ class ListKucingAdapter(val listKucing: ArrayList<Kucing>) : RecyclerView.Adapte
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
         var tvFrom = itemView.findViewById<TextView>(R.id.tv_item_from)
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
+    }
+
+    private fun openDetailActivity(vararg details: String) {
+        val i = Intent(context, DetailM::class.java)
+        i.putExtra("IMAGES_KEY", details[0])
+        i.putExtra("TITLE_KEY", details[1])
+        i.putExtra("ISI_KEY", details[2])
+
+        context.startActivity(i)
+
     }
 }

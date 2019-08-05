@@ -3,6 +3,7 @@ package id.poncoe.latihandicoding.Java.recyclerview;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,9 @@ public class DetailM extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
+
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nameTxt = findViewById(R.id.nama_kucing);
         usernameTxt = findViewById(R.id.isi);
@@ -40,6 +44,15 @@ public class DetailM extends AppCompatActivity {
                 .load(images)
                 //.resize(1200, 800)                     // optional
                 .into(img);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home)
+            finish();
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

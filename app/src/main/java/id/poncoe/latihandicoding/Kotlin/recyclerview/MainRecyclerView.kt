@@ -52,7 +52,7 @@ class MainRecyclerView : AppCompatActivity() {
 
     private fun showRecyclerList() {
         rvHeroes.layoutManager = LinearLayoutManager(this)
-        val listKucingAdapter = ListKucingAdapter(list)
+        val listKucingAdapter = ListKucingAdapter(list,this)
         rvHeroes.adapter = listKucingAdapter
 
         listKucingAdapter.setOnItemClickCallback(object : ListKucingAdapter.OnItemClickCallbackKt {
@@ -78,7 +78,7 @@ class MainRecyclerView : AppCompatActivity() {
 
     private fun showRecyclerCardView() {
         rvHeroes.layoutManager = LinearLayoutManager(this)
-        val cardviewKucingAdapter = CardviewKucingAdapter(list)
+        val cardviewKucingAdapter = CardviewKucingAdapter(list,this)
         rvHeroes.adapter = cardviewKucingAdapter
     }
 
