@@ -111,6 +111,7 @@ class MainRecyclerView : AppCompatActivity() {
                 title = "Mode CardView"
             }
         }
+        setActionBarTitle(title)
     }
 
     override fun onBackPressed() {

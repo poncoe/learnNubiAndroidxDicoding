@@ -116,6 +116,7 @@ public class MainRecyclerView extends AppCompatActivity {
                 showRecyclerCardView();
                 break;
         }
+        setActionBarTitle(title);
     }
 
     @Override
